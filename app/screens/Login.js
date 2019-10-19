@@ -1,13 +1,22 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
+import { login } from "../redux";
 
-const Login = () => (
-  <View style={styles.container}>
-    <Text>Login page</Text>
-    <Button title="Login" onPress={() => console.log("Login")} />
-  </View>
-);
+const Login = ({ login }) => {
+  const onLogin = () => {
+    console.log("Login");
+    login();
+  };
+  return (
+    <View style={styles.container}>
+      <Text>Login page</Text>
+      <Button title="Login" onPress={onLogin} />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -18,4 +27,19 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      login: login
+    },
+    dispatch
+  );
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);

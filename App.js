@@ -1,6 +1,16 @@
 import React from "react";
-import { AppNavigator } from "./app/navigator";
+import { Provider } from "react-redux";
+import { store } from "./app/redux";
+import { AppNavigator, NavigationService } from "./app/navigator";
 
 export default function App() {
-  return <AppNavigator />;
+  return (
+    <Provider store={store}>
+      <AppNavigator
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    </Provider>
+  );
 }

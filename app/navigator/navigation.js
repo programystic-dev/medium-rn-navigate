@@ -7,7 +7,10 @@ const AppNavigator = createStackNavigator({
     screen: Login
   },
   Logout: {
-    screen: Logout
+    screen: Logout,
+    navigationOptions: () => ({
+      headerLeft: null
+    })
   }
 });
 

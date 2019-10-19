@@ -10,3 +10,5 @@ const reducer = (state = { isLoggedIn: false }, action) => {
       return state;
   }
 };
+
+export default reducer;
